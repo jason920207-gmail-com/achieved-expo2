@@ -4,10 +4,12 @@ export const GET_ACHIEVEMENTS = 'GET_ACHIEVEMENTS';
 export const ADD_ACHIEVEMENT = 'ADD_ACHIEVEMENT';
 export const EDIT_ACHIEVEMENT = 'EDIT_ACHIEVEMENT';
 export const PLUS_ONE = 'PLUS_ONE';
+export const FETCHING = 'FETCHING';
 const api = 'https://achieved-api.herokuapp.com/api';
 
 export const getAchievement = () => async (dispatch) => {
   try {
+    dispatch({ type: FETCHING });
     const resp = await axios.get(`${api}/tasks`);
     dispatch({ type: GET_ACHIEVEMENTS, payload: resp.data });
   } catch (error) {

@@ -11,7 +11,13 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { Container, Header, Content, Button, Text, Icon } from 'native-base';
 import { PressBox } from '../../utils/index';
 import { State } from 'react-native-gesture-handler';
-import { FAB, List, Badge } from 'react-native-paper';
+import {
+  FAB,
+  List,
+  Badge,
+  ActivityIndicator,
+  Colors,
+} from 'react-native-paper';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {
@@ -70,7 +76,17 @@ class HomeScreen extends React.Component {
   };
 
   render() {
-    const { achievements, navigation } = this.props;
+    const { achievements, navigation, isLoading } = this.props;
+    if (isLoading) {
+      return (
+        <ActivityIndicator
+          animating={true}
+          color={Colors.red800}
+          size="large"
+        />
+      );
+    }
+
     return (
       <View
         style={{
@@ -159,6 +175,7 @@ const styles = StyleSheet.create({
 const HomePage = connect((state) => {
   return {
     achievements: state.achieved.achievements,
+    isLoading: state.achieved.isLoading,
   };
 })(HomeScreen);
 

@@ -29,6 +29,8 @@ function TaskComponent({
         value={text}
         onChangeText={(text) => onChangeText(text)}
         style={[styles.textInput, { backgroundColor: color[type] }]}
+        theme={{ colors: { text: 'white' } }}
+        autoFocus
       />
       {error && <HelperText type="error">Name can not be empty!</HelperText>}
 
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
   textInput: {
     marginTop: 20,
     marginLeft: 5,
-    marginRight: 5,
+    marginRight: 5
   },
   toggleBtn: {
     margin: 10,
