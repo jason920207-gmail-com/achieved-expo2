@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import { HomePage } from './homeScreen';
 import { DetailScreen } from '../index';
 import { EditTaskPage, AddTaskPage } from '../task/index';
@@ -14,7 +13,7 @@ export function Home() {
     <Stack.Navigator>
       <Stack.Screen
         name="HomeScreen"
-        options={{ title: 'Achieved' }}
+        options={{ title: 'Achieved',headerShown:false }}
         component={HomePage}
       />
       <Stack.Screen

@@ -1,17 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home, Score } from './pages/index';
-import { AppLoading } from 'expo';
-import { Container, Text } from 'native-base';
-import * as Font from 'expo-font';
-import { Ionicons } from '@expo/vector-icons';
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { Home, Score } from "./pages/index";
+import { AnimatedTabBarNavigator } from "react-native-animated-nav-tab-bar";
+import Icon from "react-native-vector-icons/Feather";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-const Tab = createBottomTabNavigator();
+const Tab = AnimatedTabBarNavigator();
 
 class App extends React.Component {
   render() {
@@ -19,26 +15,41 @@ class App extends React.Component {
       <Provider store={store}>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconName;
-
-                if (route.name === 'Home') {
-                  iconName = focused ? 'home' : 'home-outline';
-                } else if (route.name === 'Score') {
-                  iconName = focused ? 'person' : 'person-outline';
-                }
-
-                // You can return any component that you like here!
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-            })}
             tabBarOptions={{
-              activeTintColor: 'tomato',
-              inactiveTintColor: 'gray',
-            }}>
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Score" component={Score} />
+              activeColor: 'c8c2bc',
+              inactiveTintColor: "grey",
+            }}
+          >
+            <Tab.Screen
+              name="Home"
+              component={Home}
+              options={{
+                tabBarIcon: ({ focused, color, size }) => (
+                  <Icon
+                    name="home"
+                    size={size ? size : 24}
+                    color={focused ? color : "#000"}
+                    focused={focused}
+                    color={color}
+                  />
+                )
+              }}
+            />
+            <Tab.Screen
+              name="Score"
+              component={Score}
+              options={{
+                tabBarIcon: ({ focused, color, size }) => (
+                  <Icon
+                    name="activity"
+                    size={size ? size : 24}
+                    color={focused ? color : "#000"}
+                    focused={focused}
+                    color={color}
+                  />
+                ),
+              }}
+            />
           </Tab.Navigator>
         </NavigationContainer>
       </Provider>

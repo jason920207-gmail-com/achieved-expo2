@@ -1,19 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { connect } from 'react-redux';
-import { TextInput, ToggleButton, FAB } from 'react-native-paper';
-import { TaskComponent } from '../../components/tasks/task';
-import { addAchievement } from '../../redux/actions/achieved';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { connect } from "react-redux";
+import { TextInput, ToggleButton, FAB } from "react-native-paper";
+import { TaskComponent } from "../../components/tasks/task";
+import { addAchievement } from "../../redux/actions/achieved";
 
 class AddTaskScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      color: '0',
+      name: "",
+      color: "0",
       error: false,
     };
   }

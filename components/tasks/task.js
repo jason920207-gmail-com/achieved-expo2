@@ -1,17 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { connect } from 'react-redux';
-import { TextInput, ToggleButton, FAB, HelperText } from 'react-native-paper';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/Feather";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { connect } from "react-redux";
+import { TextInput, ToggleButton, FAB, HelperText } from "react-native-paper";
 
 const color = {
-  0: '#F6416C',
-  1: '#40BAD5',
-  2: '#00B8A9',
-  3: '#A6B1E1',
-  4: '#FFDE7D',
+  0: "rgba(162,213,242,0.5)",
+  1: "rgba(147,181,225,0.5)",
+  2: "rgba(64,168,196,0.5)",
+  3: "rgba(7,104,159,0.5)",
+  4: "rgba(18,1,54,0.5)",
 };
 
 function TaskComponent({
@@ -23,22 +24,25 @@ function TaskComponent({
   error,
 }) {
   return (
-    <View style={{ flex: 1, flexDirection: 'column' }}>
-      <TextInput
-        label="Add Task"
-        value={text}
-        onChangeText={(text) => onChangeText(text)}
-        style={[styles.textInput, { backgroundColor: color[type] }]}
-        theme={{ colors: { text: 'white' } }}
-        autoFocus
-      />
+    <View style={styles.container}>
+      <View style={styles.textInput}>
+        <TextInput
+          label="Add Task"
+          value={text}
+          onChangeText={(text) => onChangeText(text)}
+          style={{ backgroundColor: color[type] }}
+          theme={{ colors: { text: "black" } }}
+          autoFocus
+        />
+      </View>
       {error && <HelperText type="error">Name can not be empty!</HelperText>}
 
-      <View style={{ marginTop: 30 }}>
+      <View style={styles.toggleBtnGroup}>
         <ToggleButton.Row
           onValueChange={(value) => onChangeType(value)}
           value={type}
-          style={styles.toggleBtn}>
+          style={styles.toggleBtn}
+        >
           <ToggleButton value="0" style={[styles.red]} />
           <ToggleButton value="1" style={[styles.blue]} />
           <ToggleButton value="2" style={[styles.green]} />
@@ -46,52 +50,71 @@ function TaskComponent({
           <ToggleButton value="4" style={[styles.yellow]} />
         </ToggleButton.Row>
       </View>
-      <View style={styles.bottom}>
-        <FAB
-          style={styles.fab}
-          meduim
-          icon="plus"
+      <View style={styles.buttonArea}>
+        <TouchableOpacity
           onPress={() => onClickAdd()}
-        />
+          style={styles.submitButton}
+          activeOpacity={0.5}
+        >
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+  },
   textInput: {
-    marginTop: 20,
-    marginLeft: 5,
-    marginRight: 5
+    paddingHorizontal: 20,
   },
   toggleBtn: {
-    margin: 10,
-    display: 'flex',
-    justifyContent: 'space-around',
+    marginHorizontal: 30,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  toggleBtnGroup: {
+    marginTop: 30,
   },
   red: {
-    backgroundColor: '#F6416C',
+    backgroundColor: "rgba(162,213,242,0.5)",
   },
   blue: {
-    backgroundColor: '#40BAD5',
+    backgroundColor: "rgba(147,181,225,0.5)",
   },
   green: {
-    backgroundColor: '#00B8A9',
+    backgroundColor: "rgba(64,168,196,0.5)",
   },
   purple: {
-    backgroundColor: '#A6B1E1',
+    backgroundColor: "rgba(7,104,159,0.5)",
   },
   yellow: {
-    backgroundColor: '#FFDE7D',
+    backgroundColor: "rgba(18,1,54,0.5)",
   },
-  bottom: {
-    position: 'absolute',
-    width: '100%',
-    bottom: 50,
+  submitButton: {
+    height: 40,
+    width: 150,
+    marginTop: 40,
+    backgroundColor: "#FECF63",
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "#FECF63",
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 2,
   },
-  fab: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
+  buttonArea: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "black",
+    fontSize: 18,
   },
 });
 
