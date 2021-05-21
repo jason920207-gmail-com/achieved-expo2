@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
     case GET_ACHIEVEMENTS:
       return { ...state, achievements: action.payload, isLoading: false };
     // case ADD_ACHIEVEMENT:
-    //   const newAchievements = [
+    //   const newAchievcements = [
     //     ...state.achievements,
     //     { title: action.payload.title, type: action.payload.type },
     //   ];

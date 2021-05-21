@@ -15,11 +15,11 @@ export function Score() {
         options={{ title: 'Achieved' }}
         component={ScoreScreen}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="DetailScreen"
         options={{ title: 'Achieved' }}
         component={DetailScreen}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }
